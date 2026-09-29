@@ -30,3 +30,7 @@ class LocalVectorStore:
             query_embeddings=[query_embedding],
             n_results=n_results
         )
+
+    def get_all_vectors(self) -> Dict[str, Any]:
+        """Retorna todos os embenddings, documentos e metadados do banco."""
+        return self.collection.get(include=['embeddings', 'documents', 'metadatas'])
