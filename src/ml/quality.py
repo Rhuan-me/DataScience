@@ -1,6 +1,9 @@
 from typing import Tuple
 import numpy as np
-from sklearn.ensemble import IsolationForest
+try:
+    from sklearn.ensemble import IsolationForest
+except ImportError:
+    from sklearn.ensemble._iforest import IsolationForest
 
 
 def detect_anomalies(
