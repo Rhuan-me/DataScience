@@ -8,11 +8,11 @@ class EmbeddingService:
         """Carrega o modelo de embeddings localmente."""
         self.model = SentenceTransformer(model_name)
 
-    def generate_embeddings(self, texts: List[str]) -> np.ndarray:
+    def generate_embeddings(self, texts: List[str], show_progress_bar: bool = True) -> np.ndarray:
         """Gera vetores numéricos para uma lista de textos."""
         embeddings = self.model.encode(
             texts,
-            show_progress_bar=False,
+            show_progress_bar=show_progress_bar,
             convert_to_numpy=True
         )
         return embeddings
