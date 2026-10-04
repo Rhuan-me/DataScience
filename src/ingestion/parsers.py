@@ -37,8 +37,4 @@ def load_document(file_path: Union[str, Path]) -> Dict[str, Any]:
     else:
         raise ValueError(f"Formato não suportado: {ext}. Utilize .txt ou .pdf.")
 
-    return {
-        "filename": path.name,
-        "extension": ext,
-        "content": content
-    }
+    return {"filename": path.name, "extension": ext, "content": content}

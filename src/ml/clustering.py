@@ -1,13 +1,11 @@
 from typing import Dict, Any, Tuple
 import numpy as np
-from sklearn.manifold import TSNE
-from sklearn.cluster import KMeans
+from sklearn.manifold import TSNE  # type: ignore[import-untyped]
+from sklearn.cluster import KMeans  # type: ignore[import-untyped]
 
 
 def run_clustering_and_tsne(
-    embeddings: np.ndarray,
-    n_clusters: int = 4,
-    random_state: int = 42
+    embeddings: np.ndarray, n_clusters: int = 4, random_state: int = 42
 ) -> Tuple[np.ndarray, np.ndarray]:
     """
     Executa K-Means para agrupar os documentos e t-SNE para reduzir a dimensionalidade para 2D, permitindo a visualização.
@@ -23,7 +21,7 @@ def run_clustering_and_tsne(
         perplexity=perplexity_val,
         random_state=random_state,
         init="pca",
-        learning_rate="auto"
+        learning_rate="auto",
     )
     tsne_coords = tsne.fit_transform(embeddings)
 

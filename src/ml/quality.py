@@ -1,15 +1,13 @@
 from typing import Tuple
 import numpy as np
+
 try:
-    from sklearn.ensemble import IsolationForest
+    from sklearn.ensemble import IsolationForest  # type: ignore[import-untyped]
 except ImportError:
-    from sklearn.ensemble._iforest import IsolationForest
+    from sklearn.ensemble._iforest import IsolationForest  # type: ignore[import-untyped]
 
 
-def detect_anomalies(
-    embeddings: np.ndarray,
-    contamination: float = 0.05
-) -> np.ndarray:
+def detect_anomalies(embeddings: np.ndarray, contamination: float = 0.05) -> np.ndarray:
     """
     Identifica documentos/chunks que são outliers em relação ao restante corpus. Retorna True para anomalias e False para pontos normais.
     """

@@ -11,8 +11,6 @@ class EmbeddingService:
     def generate_embeddings(self, texts: List[str], show_progress_bar: bool = True) -> np.ndarray:
         """Gera vetores numéricos para uma lista de textos."""
         embeddings = self.model.encode(
-            texts,
-            show_progress_bar=show_progress_bar,
-            convert_to_numpy=True
+            texts, show_progress_bar=show_progress_bar, convert_to_numpy=True
         )
         return embeddings
