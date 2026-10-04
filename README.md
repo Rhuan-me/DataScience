@@ -177,6 +177,10 @@ Com o ambiente ativado, atualize o gerenciador de pacotes e instale as dependên
 Para carregar os documentos brutos contidos em `data/raw/`, dividi-los em blocos semânticos com sobreposição, computar as representações vetoriais de 384 dimensões e persistir os registros no banco vetorial local ChromaDB, execute:  
 `python cli.py ingest`
 
+* **Especificação de diretório customizado (`--data-dir`):**  
+  Caso deseje apontar para outra pasta de arquivos brutos:  
+  `python cli.py ingest --data-dir ./data/raw`
+
 O processo exibirá no console a contagem de documentos localizados, o total de blocos gerados, o progresso do cálculo de embeddings e a confirmação de persistência no diretório `chroma_db/`.
 
 ### Passo 5: Realização de Buscas Semânticas via CLI
@@ -185,13 +189,14 @@ Após a conclusão da ingestão, o motor de busca semântica está apto para rec
 * **Consulta padrão (retorna os 3 trechos mais relevantes):**  
   Execute: `python cli.py search "Big Brother and totalitarian control"`
 
-* **Consulta com parametrização de número de resultados (`-n` ou `--num`):**  
-  Execute: `python cli.py search "All animals are equal, but some animals are more equal than others" -n 5`
+* **Consulta com parametrização de Top-K resultados (`-n`, `--num` ou `--top-k`):**  
+  Execute: `python cli.py search "perpetual peace" --top-k 3`  
+  Ou: `python cli.py search "All animals are equal, but some animals are more equal than others" -n 5`
 
 * **Consulta sobre temas econômicos ou sociais:**  
   Execute: `python cli.py search "poverty, dishwashing and living conditions in Paris" -n 2`
 
-O terminal retornará a identificação do documento de origem de cada resultado, o índice relativo do bloco e a prévia textual recuperada.
+O terminal retornará a identificação do documento de origem de cada resultado, o índice relativo do bloco, a distância vetorial, a similaridade de cosseno e a prévia textual limpa recuperada.
 
 ### Passo 6: Execução dos Testes Automatizados
 O projeto conta com uma suíte de testes unitários que valida a leitura de arquivos, a consistência lógica do fatiamento com sobreposição e a dimensionalidade estrita dos tensores de embedding:
